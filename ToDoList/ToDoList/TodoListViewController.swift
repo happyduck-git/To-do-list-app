@@ -9,7 +9,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    let itemArray = ["빨래하기","아보카도 물주기","보고서 작성하기"]
+    var itemArray = ["빨래하기","아보카도 물주기","보고서 작성하기"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,23 @@ class TodoListViewController: UITableViewController {
         //Flashing grey
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    //MARK: - Add New Items
+    @IBAction func addItemsBtnPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "새로운 할 일", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "추가하기", style: .default) { (action) in
+            print(textField.text)
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "항목을 입력하세요"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+    }
     
-
 }
 
